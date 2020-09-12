@@ -1,0 +1,311 @@
+{%extends "Blog/home.html"%}
+{%load static%}
+{%load blog_tags%}
+
+
+
+
+{%block nav%}
+
+<div class="pos-f-t" >
+  <div class="collapse" id="navbarToggleExternalContent" >
+    <div class="bg-dark p-4" >
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+                <a class="nav-link pad" href="{%url 'home'%}">
+                  Home
+                </a>
+            </li>
+
+
+
+
+
+
+                      {% if not  user.is_authenticated %}
+
+                      <li class="nav-item">
+                          <a class="nav-link pad " href="{%url 'signin'%}">
+                            Sign-In
+                          </a>
+                      </li>
+
+
+                      <li class="nav-item">
+                          <a class="nav-link pad" href="{%url 'login'%}">
+                            LogIn
+                          </a>
+                      </li>
+
+                      <li class="nav-item">
+                      <p class="nav-link" style="color:white; font-size:15px; font-weight:bold;
+                      ">Welcome,Guest</p>
+                      </li>
+
+
+                      {% endif %}
+
+
+
+
+                      {% if  user.is_authenticated %}
+
+                      <li class="nav-item">
+                          <a class="nav-link pad"
+                          href="{%url 'allBlog'%}"  >
+                          <i class='fab fa-blogger-b fa-1x'> </i>
+                          My Blog
+                          </a>
+                      </li>
+
+                      <li class="nav-item">
+                          <a class="nav-link pad" href="{%url 'allProblem'%}" >
+                          <i class="fa fa-trophy"></i>
+                          Coding Problems
+                          </a>
+                      </li>
+
+
+                      <li class="nav-item">
+                          <a class="nav-link pad" href="{%url 'logout'%}">
+                            LogOut
+                          </a>
+                      </li>
+
+
+                      <li class="nav-item">
+                          <a class="nav-link pad" href="{%url 'allProblem'%}" >
+                        <i class="fas fa-briefcase"></i>
+                          OffCampus Job
+                          </a>
+                      </li>
+
+
+
+                        <li class="nav-item">
+                        <p class="nav-link" style="color:white; font-size:15px;">Welcome,{{ user.get_username|title }}</p>
+                        </li>
+
+                      {%endif%}
+
+
+      </ul>
+    </div>
+
+    </div>
+  </div>
+  <nav class="navbar navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" style="margin-left:2% !important;"
+      data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon" ></span>
+    </button>
+  </nav>
+</div>
+
+{%endblock%}
+
+{%block body%}
+
+
+
+
+{%block content%}
+
+<style>
+
+.container {
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.darker {
+  border-color: #ccc;
+  background-color: #ddd;
+}
+
+.container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.time-right {
+  float: right;
+  color: #aaa;
+}
+
+.time-left {
+  float: left;
+  color: #999;
+}
+
+
+</style>
+
+
+
+{%if dis == lst.0 and lk == lst.1 %}
+  <style media="screen">
+    .dexplore {
+      color: black;
+    }
+
+
+    .lexplore {
+      color: blue;
+    }
+
+  </style>
+
+  {%elif lk == lst.0 and dis == lst.1%}
+  <style media="screen">
+
+    .dexplore{
+      color: blue;
+    }
+
+
+    .lexplore {
+      color: black;
+    }
+    </style>
+
+
+  {%else %}
+  <style media="screen">
+
+    .dexplore{
+      color: black;
+    }
+
+
+    .lexplore {
+      color: black;
+    }
+    </style>
+
+
+
+
+  {%endif%}
+
+
+
+
+<center>
+
+<div class="jumbotron jumbotron-fluid" >
+  <div class="container">
+    <h1 class="display-4" style="font-weight:normal; font-size:25px;">{{problemStatement_List.title}}</h1>
+    <h6 style="font-weight:bold; letter-spacing: 3px;  word-spacing: 5px;">Published on {{problemStatement_List.publish}} By  : <span style="color:#00C851">{{post.author|title}}</span></h6>
+    <p class="lead" align="center">
+      {{problemStatement_List.body|safe|linebreaks}}
+    </p>
+    <br>
+    <hr>
+
+    <div class="" >
+      <p style="font-size:20px; font-weight:bold;">read by <i class="fa fa-eye fa-1x" aria-hidden="true"></i> {{total_view}}  </p>
+
+    </div>
+
+<div class="">
+  <p><br><span style="font-size:20px; margin-top:1%;" class="badge badge-secondary"> {{problemStatement_List.total_likes_for_Problems}} like{{problemStatement_List.total_likes_for_Problems|pluralize}}  </span>&nbsp&nbsp &nbsp&nbsp
+    <a  class="lexplore" href="{{problemStatement_List.get_url_likes2}}" role="button" style="text-decoration: none;"><i class="fa fa-thumbs-up fa-2x" aria-hidden="true" ></i>
+
+  </a> &nbsp&nbsp  &nbsp&nbsp &nbsp&nbsp<a  class="dexplore" href="{{problemStatement_List.get_url_dis2}}" role="button" style="text-decoration: none;">
+    <i  class="fa fa-thumbs-down fa-2x" aria-hidden="true" ></i>&nbsp&nbsp&nbsp
+</a>  <span style="font-size:20px; margin-top:1%;" class="badge badge-secondary"> {{problemStatement_List.total_dislikes_fro_Problems}} dis-like{{problemStatement_List.total_dislikes_fro_Problems|pluralize}}  </span>
+     </p>
+</div>
+
+
+</div>
+<a href="{%url 'allProblem' %}" class="btn btn-success btn-lg"  style="font-size:100%;" >View All Problem</a>
+</div>
+
+
+
+
+</center>
+
+
+<div class="jumbotron" align="center" sty >
+  <h5 class="display-4"style="font-size:40px !important; ;"><div class="p-3 mb-2 bg-dark text-white"  style="font-family: 'Patrick Hand', cursive; font-size:30px; width:88%;">Comment Section</div></h5>
+<br>
+
+      {%if csubmit%}
+      <h4 class="text-success" >Your comment Added SuccessFully &#9989;</h4>
+      <form class=""  method="post">
+        {{form.as_p}}
+        {%csrf_token%}
+        <input type="hidden" class="btn-success btn-lg" name="val" value="yuvraj">
+        <p class="lead">
+          <input type="submit" class="btn-success btn-lg" name="" value="Submit">
+        </p>
+      </form>
+      {%else%}
+      <form class=""  method="post">
+        {{form.as_p}}
+        {%csrf_token%}
+
+        <p class="lead">
+          <input type="submit" class="btn-success btn-lg" name="" value="Submit">
+        </p>
+      </form>
+    {%endif%}
+
+  <hr class="my-4">
+  <div class="container">
+
+
+    {%with comments.count as comments_count%}
+    <h2>
+      {{comments_count}} Comment{{comments_count|pluralize}}
+    </h2>
+    {%endwith%}
+
+    {%if comments%}
+      {%for comment in comments%}
+
+
+        <div class="jumbotron jumbotron-fluid">
+        {% if forloop.counter|divisibleby:2 %}
+        <div class="container">
+          <p  >{{comment.body|linebreaks}}</p>
+          <span class="time-right" style="font-weight:bold;  font-size:13px; font-family: 'Patrick Hand', cursive;">Comment {{forloop.counter}} by {{comment.name}} on {{comment.created}}</span>
+        </div>
+
+        {% else %}
+        <div class="container darker">
+          <p>{{comment.body|linebreaks}}</p>
+          <span class="time-left" style="font-weight:bold;  font-size:13px; font-family: 'Patrick Hand', cursive;">Comment {{forloop.counter}} by {{comment.name}} on {{comment.created}}</span>
+        </div>
+        {% endif %}
+
+      </div>
+
+      {%endfor%}
+    {%else%}
+        <p>There are no Comments Yet!!!!</p>
+    {%endif%}
+
+  </div>
+</div>
+
+
+
+
+
+
+
+{%endblock content%}
+
+
+
+
+{%endblock%}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en" dir="ltr">
+
+  <head>
+
+    <meta charset="utf-8">
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title></title>
+  </head>
+  <body>
+
+
+
+
+<div class="jumbotron">
+<h3 class="display-4" style="font-weight:bold">Hello , {{user|title }}</h3>
+  Thanks,
+  We have received your ProblemStatement. We wll send the solution soon.
+  Till then Stay Connected with us.
+
+  <div class="jumbotron" style="background:gray; color:white;">
+    <p>Title :{{title}}</p>
+    <p>Problem Statement : {{ProblemStatement}} </p>
+    <p>We will send solution on this mail ID {{email}} </p>
+
+  </div>
+
+  <h1 class="display-4">Happy Coding!
+                      Be A CodeHoolic.</h1>
+
+  <p>
+
+  </p>
+
+</div>
+
+
+
+
+  </body>
+</html>

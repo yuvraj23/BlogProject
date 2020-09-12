@@ -1,0 +1,30 @@
+{%extends "Blog/home.html"%}
+{%load static%}
+
+{%block body%}
+
+
+{%block content%}
+
+<center>
+
+
+<div class=" jumbotron" style="background:black; text-align:center; margin:2%">
+  <span class="text" style="font-size:200%">Thank's {{ user.get_username|title }} Your Problem Submitted SuccessFully  &#9989</span>
+<br>  <span class="text" style="font-size:200%">We will send respond on this mail {{user.email}}</span>
+</div>
+
+<a href="{%url 'allProblem' %}" class="btn btn-success btn-lg"  style="font-size:100%;" >View All Problem</a>
+
+
+</center>
+
+
+{%endblock%}
+
+
+
+{%block BlogsDetai%}
+{%endblock BlogsDetai%}
+
+{%endblock%}

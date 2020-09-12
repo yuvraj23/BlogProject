@@ -1,0 +1,185 @@
+{%extends "Blog/home.html"%}
+{%load static%}
+{%load blog_tags%}
+
+
+
+
+{%block nav%}
+
+<div class="pos-f-t" >
+  <div class="collapse" id="navbarToggleExternalContent" >
+    <div class="bg-dark p-4" >
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+                <a class="nav-link pad" href="{%url 'home'%}">
+                  Home
+                </a>
+            </li>
+
+
+
+
+
+
+                      {% if not  user.is_authenticated %}
+
+                      <li class="nav-item">
+                          <a class="nav-link pad " href="{%url 'signin'%}">
+                            Sign-In
+                          </a>
+                      </li>
+
+
+                      <li class="nav-item">
+                          <a class="nav-link pad" href="{%url 'login'%}">
+                            LogIn
+                          </a>
+                      </li>
+
+                      <li class="nav-item">
+                      <p class="nav-link" style="color:white; font-size:15px; font-weight:bold;
+                      ">Welcome,Guest</p>
+                      </li>
+
+
+                      {% endif %}
+
+
+
+
+                      {% if  user.is_authenticated %}
+
+                      <li class="nav-item">
+                          <a class="nav-link pad"
+                          href="{%url 'allBlog'%}"  >
+                          <i class='fab fa-blogger-b fa-1x'> </i>
+                          My Blog
+                          </a>
+                      </li>
+
+                      <li class="nav-item">
+                          <a class="nav-link pad" href="{%url 'allProblem'%}" >
+                          <i class="fa fa-trophy"></i>
+                          Coding Problems
+                          </a>
+                      </li>
+
+
+                      <li class="nav-item">
+                          <a class="nav-link pad" href="{%url 'logout'%}">
+                            LogOut
+                          </a>
+                      </li>
+
+                      <li class="nav-item">
+                          <a class="nav-link pad" href="{%url 'allProblem'%}" >
+                        <i class="fas fa-briefcase"></i>
+                          OffCampus Job
+                          </a>
+                      </li>
+
+
+
+                        <li class="nav-item">
+                        <p class="nav-link" style="color:white; font-size:15px;">Welcome,{{ user.get_username|title }}</p>
+                        </li>
+
+                      {%endif%}
+
+
+      </ul>
+    </div>
+
+    </div>
+  </div>
+  <nav class="navbar navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" style="margin-left:2% !important;"
+      data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon" ></span>
+    </button>
+  </nav>
+</div>
+
+{%endblock%}
+
+{%block body%}
+
+
+
+
+{%block content%}
+
+<style>
+
+.container {
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.darker {
+  border-color: #ccc;
+  background-color: #ddd;
+}
+
+.container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.time-right {
+  float: right;
+  color: #aaa;
+}
+
+.time-left {
+  float: left;
+  color: #999;
+}
+
+
+</style>
+
+
+
+
+<center>
+
+<div class="jumbotron jumbotron-fluid" >
+  <div class="container">
+    <h1 class="display-4" style="font-weight:normal; font-size:25px;">{{offcampus.title}}</h1>
+    <h6 style="font-weight:bold; letter-spacing: 3px;  word-spacing: 5px;">Published on {{offcampus.job_created}} By  : <span style="color:#00C851">{{offcampus.adminName|title}}</span></h6>
+    <p class="lead" align="center">
+      {{offcampus.description|safe|linebreaks}}
+    </p>
+    <br>
+    <hr>
+
+
+    <div class="" >
+      <p style="font-size:20px; font-weight:bold;">seen by <i class="fa fa-eye fa-1x" aria-hidden="true"></i> {{view}}  </p>
+    </div>
+</div>
+<a href="{%url 'allJob' %}" class="btn btn-success btn-lg"  style="font-size:100%;" >View All Jobs</a>
+</div>
+
+</center>
+
+
+
+
+
+
+
+
+{%endblock content%}
+
+
+
+
+{%endblock%}

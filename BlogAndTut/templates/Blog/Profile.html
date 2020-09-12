@@ -1,0 +1,84 @@
+
+{%extends "Blog/home.html"%}
+{%load static%}
+
+{%block body%}
+
+
+{%block content%}
+{%endblock%}
+
+
+<center>
+
+
+
+  <div class="jumbotron">
+
+
+
+
+
+
+
+          <table class="table table-bordered table-dark center" style="text-align:center;">
+            <thead>
+              <tr>
+                <th scope="col" style="width:10%; text-align:center;">User Name   </th>
+                <td style="width:50%; text-align:center;">{{MyDetail.username}}</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+
+                <th scope="col" style="width:10%; text-align:center;">Full Name  </th>
+                <td style="width:50%; text-align:center;">{{MyDetail.get_full_name}}</td>
+
+              </tr>
+
+              <tr>
+
+                <th scope="col" style="width:10%; text-align:center;">Email ID  </th>
+                    <td style="width:50%; text-align:center;"> {{MyDetail.email}} </td>
+
+              </tr>
+
+              <tr>
+
+                <th scope="col" style="width:10%; text-align:center;">Last Login  </th>
+                <td style="width:50%; text-align:center;">  {{MyDetail.last_login }}</td>
+              </tr>
+            </tbody>
+          </table>
+<br>
+
+    <a href="#" class="btn btn-success btn-lg"> Update Profile</a>
+
+
+  </div>
+
+</center>
+
+{%block BlogsDetai%}
+{%endblock BlogsDetai%}
+
+
+{%endblock%}
+
+
+
+
+
+
+
+
+
+
+
+<div class="jumbotron">
+  <h1 class="display-4">Hello, world!</h1>
+  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+  <hr class="my-4">
+  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+  <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+</div>

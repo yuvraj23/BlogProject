@@ -1,0 +1,35 @@
+{%extends "Blog/home.html"%}
+{%load static%}
+
+{%block body%}
+{%block content%}
+
+<center>
+{% for problem in problemStatement_List%}
+<div class="jumbotron">
+  <h1  style="margin-top:10px;">{{problem.title|safe}}</h1>
+  <hr class="my-1">
+  <center>
+
+      <h6 style="font-weight:bold; letter-spacing: 2px;  word-spacing: 5px;">Published on {{problem.publish}} By  : {{problem.coder|title}}</h6>
+
+
+    <br>
+    <a  class="explore btn-success btn-lg" href="{{problem.get_problem_url1}}" role="button" style="text-decoration: none;">Explore more</a>
+    </center>
+  <hr />
+</div>
+
+
+{% endfor %}
+
+{%endblock%}
+
+
+</center>
+
+{%block BlogsDetai%}
+{%endblock BlogsDetai%}
+
+
+{%endblock%}
